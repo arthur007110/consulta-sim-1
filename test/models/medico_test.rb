@@ -6,4 +6,26 @@ class MedicoTest < ActiveSupport::TestCase
                         especialidade: 'Reumatologista', crm: '123456'
     assert medico.save
   end
+
+  test 'criando medico com nome invalido' do
+    medico = Medico.new(
+      nome: 'Eva',
+      cpf: '876.575.640-16',
+      email: 'eva@email.com',
+      crm: '123456',
+      especialidade: 'Psicologa'
+    )
+    assert_not medico.save
+  end
+
+  test 'criando medico com especialidade invalida' do
+    medico = Medico.new(
+      nome: 'Eva dos Santos',
+      cpf: '876.575.640-16',
+      email: 'eva@email.com',
+      crm: '123456',
+      especialidade: 'Psi'
+    )
+    assert_not medico.save
+  end
 end
